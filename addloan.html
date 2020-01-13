@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+
+
+
+<head>
+	
+	
+	  <link rel="stylesheet" type="text/css" href="./css/style.css">
+	 <link rel="stylesheet" type="text/css" href="./bootstrap/bootstrap.3.4.0.css">
+	  
+
+	
+	</head>
+
+
+	<body>
+
+	<div class= "wrapper">
+
+	<div class="header">
+
+		<div>
+			<center>
+			<img src="./images/logopng.png" alt="logo" style="width:400px;height:100px;">
+		</center>
+
+		</div>
+
+
+
+
+	</div>
+
+			<div class="links">
+				
+			<center>
+				 
+				<button type="button"  class=" btn btn-primary btnHome" id="btnHome" button onclick="window.location.href = 'index.html'" style="width:130px;">Home </button>
+				 <br>
+				 <br>
+				<button type="button"  class=" btn btn-primary btnProfile" id="btnloan"  button onclick="window.location.href = 'addloan.html'" style="width:130px;">Add Loan</button>
+				<br>
+				<br>
+			
+				<button type="button"  class=" btn btn-primary btnContact" id="btnContact"   style="width:130px;">Payment History</button>
+
+				
+			
+			</center>
+	</div>
+
+		<div class ="loan">
+			
+				
+				<form>
+
+					First Name: <br>
+					<input type="text" name="fname" placeholder="First Name"><br><br>
+					Last Name: <br>
+					<input type="text" name="lname" placeholder="Last Name"><br><br>
+					Address: <br> 
+					<input type="text" name="address" placeholder="Address"><br><br>
+					Loan Interest <br>
+					<input type="text" name="interest"  value="10%" disabled><br><br>
+					Amount <br>
+					<input type="number" name="Amount" class="number" value="Amount" ><br><br>
+
+					Term of Payment(per year)<br><br>
+					 <select name="Course" class="payment"><br><br>
+					    <option value>Term of Payment</option>
+					    <option value=1>1</option>
+					    <option value=2>2</option>
+					    <option value=3>3</option>
+					    <option value=4>4</option>
+					    <option value=5>5</option>
+					    <option value=6>6</option>
+					    <option value=7>7</option>
+					    <option value=8>8</option>
+					    <option value=9>9</option>
+					    <option value=10>10</option>
+					  </select> <br><br>
+
+					  Total Paid(With Interest)
+					  <input type="text" name="total" disabled><br><br>
+
+					   Monthly Pay(With Interest)
+					  <input type="text" name="monthly" disabled><br><br>
+
+					  Due Date <br><br>
+					  <input type="date" name="duedate" class="date" ><br><br>
+
+					  <button type="button"  class=" btn btn-primary btnAdd" id="btnHome" style="width:130px;">Add Transaction </button>
+
+				</form>
+				
+			</div>
+
+
+
+
+			
+
+			
+
+		<script>
+
+	
+	function scrollToHome () {
+		$('html,body').animate({
+			scrollTop: $(".search").offset().top
+			
+		},1000);
+		
+		
+	}
+	function scrollToLoan () {
+		$('html,body').animate({
+			scrollTop: $(".loan").offset().top
+			
+		},1000);
+		
+		
+	}
+	</script>
+
+
+</html>

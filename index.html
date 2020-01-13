@@ -37,15 +37,11 @@
 			<div class="links">
 				
 			<center>
-				<div>
-					<br>
-				 <br>
-					<img src="./images/user.png" alt="ads" style="width:100px;height:100px;">
-					</div>
-				<button type="button"  class=" btn btn-primary btnHome" id="btnHome"  onclick="scrollToHome()" style="width:130px;">Home </button>
+				 
+				<button type="button"  class=" btn btn-primary btnHome" id="btnHome" button onclick="window.location.href = 'index.html'" style="width:130px;">Home </button>
 				 <br>
 				 <br>
-				<button type="button"  class=" btn btn-primary btnProfile" id="btnloan"  onclick="scrollToLoan()" style="width:130px;">Add Loan</button>
+				<button type="button"  class=" btn btn-primary btnProfile" id="btnloan"  button onclick="window.location.href = 'addloan.html'" style="width:130px;">Add Loan</button>
 				<br>
 				<br>
 			
@@ -74,59 +70,14 @@
 
 			<div class="content">
 
-			<div class="table">
+			<div>
+				<center>
 
-				FETCH DATA FROM MYSQL  AND DISPLAY IN TABLE
-				UPDATE GOES HERE!
+				<iframe src="home.html" scrolling="no" style="border:none;height:700px;width:1100px"></iframe>
+			</center>
 			</div>
 
-				&nbsp;
-			<div class ="loan">
-				 &nbsp; 
-				
-				<form>
-
-					First Name:
-
-					<input type="text" name="fname" placeholder="First Name"><br><br>
-					Last Name:
-					<input type="text" name="lname" placeholder="Last Name"><br><br>
-					Address <br>
-					<input type="text" name="address" placeholder="Address"><br><br>
-					Loan Interest
-					<input type="text" name="interest"  value="10%" disabled><br><br>
-
-					Term of Payment(per year)<br><br>
-					 <select name="Course" class="payment"><br><br>
-					    <option value>Term of Payment</option>
-					    <option value=1>1</option>
-					    <option value=2>2</option>
-					    <option value=3>3</option>
-					    <option value=4>4</option>
-					    <option value=5>5</option>
-					    <option value=6>6</option>
-					    <option value=7>7</option>
-					    <option value=8>8</option>
-					    <option value=9>9</option>
-					    <option value=10>10</option>
-					  </select> <br><br>
-
-					  Total Paid(With Interest)
-					  <input type="text" name="total" disabled><br><br>
-
-					   Monthly Pay(With Interest)
-					  <input type="text" name="monthly" disabled><br><br>
-
-					  Due Date <br><br>
-					  <input type="date" name="duedate" class="date" ><br><br>
-
-					  <button type="button"  class=" btn btn-primary btnAdd" id="btnHome" style="width:130px;">Add Transaction </button>
-
-				</form>
-				
-			</div>
-
-		</div>
+			
 
 		<script>
 
