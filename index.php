@@ -77,6 +77,7 @@
 			<div class="table">
 
 				FETCH DATA FROM MYSQL  AND DISPLAY IN TABLE
+				UPDATE GOES HERE!
 			</div>
 
 				&nbsp;
