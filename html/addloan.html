@@ -4,14 +4,10 @@
 
 
 
-<head>
-	
-	
-	  <link rel="stylesheet" type="text/css" href="./css/style.css">
-	 <link rel="stylesheet" type="text/css" href="./bootstrap/bootstrap.3.4.0.css">
-	  
-
-	
+<head>	 
+	 <link rel="stylesheet" type="text/css" href="../css/style.css">
+	 <link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.3.4.0.css">
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
 	</head>
 
 
@@ -37,7 +33,7 @@
 				
 			<center>
 				 
-				<button type="button"  class=" btn btn-primary btnHome" id="btnHome" button onclick="window.location.href = 'index.html'" style="width:130px;">Home </button>
+				<button type="button"  class=" btn btn-primary btnHome" id="btnHome" button onclick="window.location.href = '../index.html'" style="width:130px;">Home </button>
 				 <br>
 				 <br>
 				<button type="button"  class=" btn btn-primary btnProfile" id="btnloan"  button onclick="window.location.href = 'addloan.html'" style="width:130px;">Add Loan</button>
@@ -96,34 +92,18 @@
 				</form>
 				
 			</div>
+				<div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
 
-
-
-
-			
-
-			
-
-		<script>
-
-	
-	function scrollToHome () {
-		$('html,body').animate({
-			scrollTop: $(".search").offset().top
-			
-		},1000);
-		
-		
-	}
-	function scrollToLoan () {
-		$('html,body').animate({
-			scrollTop: $(".loan").offset().top
-			
-		},1000);
-		
-		
-	}
-	</script>
+		<script type="text/javascript">
+			//initial test AYAW IBTA!
+			$(document).ready(function(){
+		  $("button").click(function(){
+		    $.ajax({url: "ajaxtest.txt", success: function(result){
+		      $("#div1").html(result);
+		    }});
+		  });
+		});
+		</script>>
 
 
 </html>
