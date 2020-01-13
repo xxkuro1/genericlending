@@ -27,5 +27,4 @@ if ($conn->query($sql) === TRUE) {
 
 
 echo "This is an Init page";
-
-?>
+	

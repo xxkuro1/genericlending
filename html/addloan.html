@@ -47,7 +47,7 @@
 			</center>
 	</div>
 
-		<div class ="loan">
+		<div class ="loan" id="loanform">
 			
 				
 				<form>
@@ -94,18 +94,41 @@
 			</div>
 				<!-- AJAX RESPONSE -->
 				<div id='response'></div>
-				
-				<div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
+
 
 		<script type="text/javascript">
-			//initial test AYAW IBTA!
-			$(document).ready(function(){
-		  $("button").click(function(){
-		    $.ajax({url: "ajaxtest.txt", success: function(result){
-		      $("#div1").html(result);
-		    }});
-		  });
-		});
+
+
+		//experimental
+		$(document).ready(function(){
+    	$('button').click(function(){
+     
+        // show that something is loading
+        $('#response').html("<b>Loading response...</b>");
+        $.ajax({
+            type: 'POST',
+            url: 'addloan.php', 
+            data: $(this).serialize()
+        })
+        .done(function(data){
+             
+            // show the response
+            $('#response').html(data);
+             
+        })
+        .fail(function() {
+         
+            // just in case posting your form failed
+            alert( "Posting failed." );
+             
+        });
+ 
+        // to prevent refreshing the whole page page
+        return false;
+ 
+    });
+});
+
 		</script>>
 
 
