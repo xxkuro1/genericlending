@@ -59,7 +59,8 @@
 			
 				
 				<form>
-
+					Transaction ID <br>
+					<input type="number" name="tid" class="number" value="Amount" ><br><br>
 					First Name: <br>
 					<input type="text" name="fname" placeholder="First Name"><br><br>
 					Last Name: <br>
@@ -100,43 +101,11 @@
 				</form>
 				
 			</div>
-				<!-- AJAX RESPONSE -->
-				<div id='response'></div>
+
 
 	</div>
 	</body>
 		<script type="text/javascript">
-
-
-		//experimental
-		$(document).ready(function(){
-    	$('button').click(function(){
-     
-        // show that something is loading
-        $('#response').html("<b>Loading response...</b>");
-        $.ajax({
-            type: 'POST',
-            url: 'addloan.php', 
-            data: $(this).serialize()
-        })
-        .done(function(data){
-             
-            // show the response
-            $('#response').html(data);
-             
-        })
-        .fail(function() {
-         
-            // just in case posting your form failed
-            alert( "Posting failed." );
-             
-        });
- 
-        // to prevent refreshing the whole page page
-        return false;
- 
-    });
-});
 
 		</script>
 
