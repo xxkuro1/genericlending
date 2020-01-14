@@ -12,45 +12,34 @@
 	}
 	
 	.header {
-		
-		background-color:#c0bfc7;
-		width:100%;
-		height:100px;
-		border:0px solid black;
-		position:fixed;
-		right:0px;
-		z-index:2;
-		top:-1px;
-		
-		
+
+		color: white;
+		font-size: 70px;
+		position: absolute;
+		border: none;
+		left: 50%;
+		transform: translateX(-50%) translateY(-70%);
+
 	}
-	
-	
+
+
+	#header-iframe{
+		width: 100%;
+		height: 100%;
+		border: none;
+	}
+	#header-container{
+		height: 200px;
+		border: none;
+	}
+	iframe{
+		border: none;
+	}
 	.btnLogin {
 		
 		position:absolute;
 		left:1200px;
 		top:30px;
-		
-		
-		
-		
-		
-	}
-	
-	.btnHome {
-		
-		position:relative;
-		left:10px;
-		top:30px;
-		border-radius: 12px;
-		font-size: 13px;
-		font-weight: bold;
-		
-		
-		
-		
-		
 	}
 
 
@@ -81,21 +70,11 @@
 		
 		
 	}
-	
-	.btnProfile {
-		
-		position:relative;
-		left:10px;
-		top:30px;
-		border-radius: 14px;
-		font-size: 13px;
-		font-weight: bold;
-		
-		
-		
-		
+	input {
+		width: 50% !important;
+		height: 30px !important;
+		left: 30px !important;
 	}
-	
 	.btnAbout {
 		
 		position:relative;
@@ -107,23 +86,7 @@
 		
 		
 	}
-	
-	.btnContact {
-		
-		position:relative;
-		left:10px;
-		top:30px;
-		border-radius: 12px;
-		font-size: 13px;
-		font-weight: bold;
-		
-		
-		
-	}
-	
-	
-	
-	
+
 	.links {
 		
 		background-color:#152357;
@@ -136,7 +99,28 @@
 							
 							
 	}
-	
+	#content-container {
+		width: 100%;
+		height: 100%;
+		padding: 2px;
+		overflow-x: hidden; //horizontal
+	}
+	#content-iframe {
+		width: 100%;
+		height: 1000px;
+		overflow-x: hidden; //horizontal
+	}
+
+	.buttonlink {
+		position:relative;
+		left:10px;
+		top:190px;
+		border-radius: 14px;
+		font-size: 13px;
+		font-weight: bold;
+		margin: 9px;
+
+	}
 	
 	.ads {
 		
@@ -191,12 +175,13 @@
 	.search{
 		
 		background-color:white;
-		width:80%;
+		width:50%;
 		height:200px;
 		position:relative;
-		z-index:1;
-		right:-200px;
-		top:99px;
+		z-index:0;
+		right:-380px;
+		top:-29px;
+
 		 padding-top: 50px;
 		  padding-right: 30px;
 		  padding-bottom:50px;
@@ -216,8 +201,8 @@
 		height:400px;
 		position:relative;
 		z-index:0;
-		left:140px;
-		top:140px;
+		left:430px;
+		top:-30px;
 		padding-right: 30px;
 		padding-bottom: 50px;
 		padding-left: 80px;
@@ -230,23 +215,19 @@
 	.loan{
 		
 	
-		
+		position: fixed;
 		background-color:white;
 		width:100%;
 		height:1000px;
-		position:relative;
 		z-index:0;
 		left:80px;
-		top:100px;
+		top:10px;
 		 padding-top: 50px;
 		  padding-right: 30px;
 		  padding-bottom: 50px;
 		  padding-left: 80px;
 		   border: 3px solid white;
-		  
-		
-		
-		
+
 	}	
 	
 	
@@ -285,7 +266,7 @@
 		
 		.payment{
 
-			width:90%;
+			width:10%;
 			height:50px; 
 		}
 
@@ -304,8 +285,7 @@
 
 
 
-		
-	
+
 	
 	
 	body {font-family: Arial, Helvetica, sans-serif;}
