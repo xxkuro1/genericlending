@@ -163,6 +163,7 @@
 		z-index:0;
 		right:-100px;
 		top:-50px;
+		bottom: 500px;
 		
 		
 		
@@ -193,8 +194,8 @@
 		width:80%;
 		height:200px;
 		position:relative;
-		z-index:0;
-		right:0px;
+		z-index:1;
+		right:-200px;
 		top:99px;
 		 padding-top: 50px;
 		  padding-right: 30px;
@@ -311,7 +312,7 @@
 	
 	
 	input[type=text] {
-		  width: 50%;
+		  width: 10%;
 		}
 
 /* Full-width input fields */
