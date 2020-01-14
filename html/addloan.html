@@ -4,10 +4,14 @@
 
 
 
-<head>	 
-	 <link rel="stylesheet" type="text/css" href="../css/style.css">
-	 <link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.3.4.0.css">
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
+	<head>
+	 	<link rel="stylesheet" type="text/css" href="../css/style.css">
+
+	 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
+		<!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	</head>
 
 
@@ -62,8 +66,8 @@
 					<input type="text" name="lname" placeholder="Last Name"><br><br>
 					Address: <br> 
 					<input type="text" name="address" placeholder="Address"><br><br>
-					Loan Interest <br>
-					<input type="text" name="interest"  value="10%" disabled><br><br>
+					Loan Interest (percent) <br>
+					<input type="text" name="interest"  placeholder="10" disabled><br><br>
 					Amount <br>
 					<input type="number" name="Amount" class="number" value="Amount" ><br><br>
 
@@ -83,15 +87,15 @@
 					  </select> <br><br>
 
 					  Total Paid(With Interest)
-					  <input type="text" name="total" disabled><br><br>
+					  <input type="number" name="total" disabled><br><br>
 
 					   Monthly Pay(With Interest)
-					  <input type="text" name="monthly" disabled><br><br>
+					  <input type="number" name="monthly" disabled><br><br>
 
 					  Due Date <br><br>
 					  <input type="date" name="duedate" class="date" ><br><br>
 
-					  <button type="button"  class=" btn btn-primary btnAdd" id="btnHome" style="width:130px;">Add Transaction </button>
+					  <button type="button"  class=" btn btn-primary btnAdd" id="btnAdd" style="width:130px;">Add Transaction </button>
 
 				</form>
 				
@@ -99,7 +103,8 @@
 				<!-- AJAX RESPONSE -->
 				<div id='response'></div>
 
-
+	</div>
+	</body>
 		<script type="text/javascript">
 
 
