@@ -48,7 +48,7 @@
 				<br>
 				<br>
 			
-				<button type="button"  class=" btn btn-primary btnContact" id="btnContact"   style="width:130px;">Payment History</button>
+				<button type="button"  class=" btn btn-primary btnContact" id="btnContact"   style="width:130px;height:90px;">Payment History</button>
 
 				
 			
@@ -60,20 +60,20 @@
 				
 				<form>
 					Transaction ID <br>
-					<input type="number" name="tid" class="number" value="Amount" ><br><br>
+					<input type="number" id="tid" class="number" value="Amount" ><br><br>
 					First Name: <br>
-					<input type="text" name="fname" placeholder="First Name"><br><br>
+					<input type="text" id="fname" placeholder="First Name"><br><br>
 					Last Name: <br>
-					<input type="text" name="lname" placeholder="Last Name"><br><br>
+					<input type="text" id="lname" placeholder="Last Name"><br><br>
 					Address: <br> 
-					<input type="text" name="address" placeholder="Address"><br><br>
+					<input type="text" id="address" placeholder="Address"><br><br>
 					Loan Interest (percent) <br>
-					<input type="text" name="interest"  placeholder="10" disabled><br><br>
+					<input type="number" id="loaninterest"  placeholder="10" ><br><br>
 					Amount <br>
-					<input type="number" name="Amount" class="number" value="Amount" ><br><br>
+					<input type="number" id="amount" class="number" value="Amount" ><br><br>
 
 					Term of Payment(per year)<br><br>
-					 <select name="Course" class="payment"><br><br>
+					 <select id="termofpayment"  class="payment browser-default"><br><br>
 					    <option value>Term of Payment</option>
 					    <option value=1>1</option>
 					    <option value=2>2</option>
@@ -88,15 +88,15 @@
 					  </select> <br><br>
 
 					  Total Paid(With Interest)
-					  <input type="number" name="total" disabled><br><br>
+					  <input type="number" id="totalpaid" ><br><br>
 
 					   Monthly Pay(With Interest)
-					  <input type="number" name="monthly" disabled><br><br>
+					  <input type="number" id="monthlypaid" ><br><br>
 
 					  Due Date <br><br>
-					  <input type="date" name="duedate" class="date" ><br><br>
+					  <input type="date" id="duedate" class="date" ><br><br>
 
-					  <button type="button"  class=" btn btn-primary btnAdd" id="btnAdd" style="width:130px;">Add Transaction </button>
+					  <input type="button"  class=" btn btn-primary btnAdd" onclick="insertData('insert')" id="btnAdd"  value="Add Transactions" style="width:190px;">
 
 				</form>
 				
@@ -106,7 +106,39 @@
 	</div>
 	</body>
 		<script type="text/javascript">
+			function insertData(key){
+				let tid = $("#tid");
+				let fname = $("#fname");
+				let lname = $("#lname");
+				let address = $("#address");
+				let loaninterest = $("#loaninterest");
+				let amount = $("#amount");
+				let termofpayment = $("#termofpayment");
+				let totalpaid = $("#totalpaid");
+				let monthlypaid = $("#monthlypaid");
+				let duedate = $("#duedate")
 
+				$.ajax({
+					url: 'addloan.php',
+					method: 'POST',
+					dataType: 'text',
+					data: {
+						key: key,
+						fname: fname.val(),
+						lname: lname.val(),
+						address: address.val(),
+						loaninterest: loaninterest.val(),
+						amount: amount.val(),
+						termofpayment: termofpayment.val(),
+						totalpaid: totalpaid.val(),
+						monthlypaid: monthlypaid.val()
+					}, success: function (response) {
+						if(response != "success"){
+							alert(response);
+						}
+					}
+				});
+			}
 		</script>
 
 
