@@ -114,12 +114,9 @@
 	.buttonlink {
 		position:relative;
 		left:10px;
-		top:190px;
-		border-radius: 14px;
-		font-size: 13px;
-		font-weight: bold;
-		margin: 9px;
-
+		top:260px;
+		width: 120px !important;
+		overflow-wrap: break-word !important;
 	}
 	
 	.ads {
