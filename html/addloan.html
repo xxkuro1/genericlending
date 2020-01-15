@@ -33,10 +33,11 @@
 					<label>Last Name: </label>
 					<input type="text" id="lname"  class="inputfield u-full-width" placeholder="Last Name">
 					<label>Address: </label>
-					<input type="text" id="address" class="inputfield u-full-width" placeholder="Address"><br><br>
+                        <textarea class="inputfield u-full-width" id="address" placeholder="Address"
+                                  type="text"></textarea><br><br>
 					</div>
 					<label>Loan Interest (percent) </label>
-					<input type="number" id="loaninterest"  class="inputfield u-full-width" placeholder="10" >
+            <input class="inputfield u-full-width" id="loaninterest" placeholder="10" readonly type="number" value="10">
 					<label>Amount</label>
 					<input type="number" id="amount" class="inputfield u-full-width" value="Amount" >
 
@@ -55,7 +56,7 @@
 					  </select><br>
 
 					  <label>Total paid with Interest (with Interest)</label>
-					  <input type="number" id="totalpaid" class="inputfield">
+            <input class="inputfield" id="totalpaid" type="number">
 			
 					   <label>Monthly Pay(With Interest)</label>
 					  <input type="number" id="monthlypaid" class="inputfield">
@@ -69,6 +70,32 @@
 	</body>
 
 		<script type="text/javascript">
+            $(document).ready(function () {
+                let tid = $("#tid");
+                let fname = $("#fname");
+                let lname = $("#lname");
+                let address = $("#address");
+                let loaninterest = $("#loaninterest");
+                let amount = $("#amount");
+                let termofpayment = $("#termofpayment");
+                let totalpaid = $("#totalpaid");
+                let monthlypaid = $("#monthlypaid");
+                let duedate = $("#duedate")
+                $("#btnAdd").on('click', function () {
+                    tid.val("");
+                    fname.val("");
+                    lname.val("");
+                    address.val("");
+                    amount.val("");
+                    termofpayment.val(1);
+                    totalpaid.val("");
+                    monthlypaid.val("");
+                    duedate.val("");
+                });
+
+            });
+
+
 			function insertData(key){
 				let tid = $("#tid");
 				let fname = $("#fname");
@@ -79,10 +106,10 @@
 				let termofpayment = $("#termofpayment");
 				let totalpaid = $("#totalpaid");
 				let monthlypaid = $("#monthlypaid");
-				let duedate = $("#duedate")
+                let duedate = $("#duedate");
 
 				$.ajax({
-					url: 'addloan.php',
+                    url: '../php/addloan.php',
 					method: 'POST',
 					dataType: 'text',
 					data: {
@@ -94,8 +121,8 @@
 						amount: amount.val(),
 						termofpayment: termofpayment.val(),
 						totalpaid: totalpaid.val(),
-						monthlypaid: monthlypaid.val()
-
+                        monthlypaid: monthlypaid.val(),
+                        duedate: duedate.val()
 					},	cache: false
 						, success: function (response) {
 						if(response != "success"){
