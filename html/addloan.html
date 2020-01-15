@@ -8,32 +8,36 @@
 	 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 
 	 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
-		<!-- Compiled and minified CSS -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-		<!-- Compiled and minified JavaScript -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="../css/skeleton.css">
+    	<link rel="stylesheet" type="text/css" href="../css/normalize.css">
 	</head>
 
 
 	<body>
-		<div class ="loan" align="center">
+		<form>
+		<div class ="loan row" align="center">
 
 
-					Transaction ID <br>
-					<input type="number" id="tid" class="inputfield" value="Amount" ><br><br>
-					First Name: <br>
-					<input type="text" id="fname" class="inputfield" placeholder="First Name"><br><br>
-					Last Name: <br>
-					<input type="text" id="lname"  class="inputfield" placeholder="Last Name"><br><br>
-					Address: <br> 
-					<input type="text" id="address" class="inputfield" placeholder="Address"><br><br>
-					Loan Interest (percent) <br>
-					<input type="number" id="loaninterest"  class="inputfield" placeholder="10" ><br><br>
+					<div class="six columns">
+					<a>Transaction ID </a><br>
+					<input type="number" id="tid" class="inputfield u-full-width" value="Amount" ><br>
+					<a>First Name: </a>
+					<input type="text" id="fname" class="inputfield u-full-width" placeholder="First Name"><br><br>
+					<a>Last Name: </a>
+					<input type="text" id="lname"  class="inputfield u-full-width" placeholder="Last Name"><br><br>
+					<a>Address: </a>
+					<input type="text" id="address" class="inputfield u-full-width" placeholder="Address"><br><br>
+					</div>
+					<div class="six columns">
+					<a>Loan Interest (percent) </a>
+					<input type="number" id="loaninterest"  class="inputfield u-full-width" placeholder="10" ><br><br>
 					Amount <br>
-					<input type="number" id="amount" class="inputfield" value="Amount" ><br><br>
+					<input type="number" id="amount" class="inputfield u-full-width" value="Amount" ><br><br>
+					</div>
 
-					Term of Payment(per year)<br><br>
-					 <select id="termofpayment"  class="payment browser-default inputfield"><br><br>
+					<a>Term of Payment (per year) </a>
+					 <select id="termofpayment"  class="payment browser-default inputfield">
 					    <option value=1>1</option>
 					    <option value=2>2</option>
 					    <option value=3>3</option>
@@ -46,21 +50,21 @@
 					    <option value=10>10</option>
 					  </select> <br><br>
 
-					  Total Paid(With Interest)
+					  <a>Total paid with Interest (with Interest)</a>
 					  <input type="number" id="totalpaid" class="inputfield"><br><br>
-
-					   Monthly Pay(With Interest)
+					  <br>
+					   <a>Monthly Pay(With Interest)</a>
 					  <input type="number" id="monthlypaid" class="inputfield"><br><br>
 
 
-					  Due Date <br><br>
+					  <a></a> <br><br>
 					  <input type="date" id="duedate" class="date" class="inputfield"><br><br>
 
-					  <input type="button"  class=" btn btn-primary btnAdd" onclick="insertData('insert')" id="btnAdd"  value="Add Transactions" style="width:190px;">
+					  <input type="button"  class="button button-primary btnAdd" onclick="insertData('insert')" id="btnAdd"  value="Add Transactions" style="width:190px;">
 
 				
 			</div>
-
+		</form>
 
 	</div>
 	</body>
