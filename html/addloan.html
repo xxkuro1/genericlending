@@ -37,12 +37,12 @@
                                   type="text"></textarea><br><br>
 					</div>
 					<label>Loan Interest (percent) </label>
-            <input class="inputfield u-full-width" id="loaninterest" placeholder="10" readonly type="number" value="10">
+            		<input class="inputfield u-full-width" id="loaninterest" placeholder="10" readonly type="number" value="10">
 					<label>Amount</label>
 					<input type="number" id="amount" class="inputfield u-full-width" value="Amount" >
 
 					<label>Term of Payment (per year) </label>
-					 <select id="termofpayment" onchange="loanamount(this.value)" class="payment browser-default inputfield" required>
+					 <select id="termofpayment" class="payment browser-default inputfield" required>
 					    <option value=1>1</option>
 					    <option value=2>2</option>
 					    <option value=3>3</option>
@@ -56,7 +56,7 @@
 					  </select><br>
 
 					  <label>Total paid with Interest (with Interest)</label>
-            <input class="inputfield" id="totalpaid" type="number">
+           			 <input class="inputfield" id="totalpaid" type="number">
 			
 					   <label>Monthly Pay(With Interest)</label>
 					  <input type="number" id="monthlypaid" class="inputfield">
@@ -132,21 +132,32 @@
 				});
 			}
 
-			 function loanamount()
-                    {
-                    var amount=document.getElementById("amount").value; 
-                    var interest=document.getElementById("loaninterest").value; 
-                    var year=document.getElementById("termofpayment").value; 
-                    
-                    var interest1=(Number(amount)*Number(interest)*Number(year))/100;
-                    var total=Number(amount)+Number(interest1);
-                    
-                    var emi=total/(year*12);
-                    document.getElementById("totalpaid").value=total;
-                    document.getElementById("monthlypaid").value=emi;
-                    
-                    }
+                    let amountevent = document.getElementById('amount');
+                    let topevent = document.getElementById("termofpayment");
 
+                    amountevent.addEventListener('input', (event) => {
+                    let amount = Number(document.getElementById("amount").value);
+					let interest = Number(document.getElementById("loaninterest").value);
+					let year = Number(document.getElementById("termofpayment").value);
+					let interest1 = (Number(amount)*Number(interest)*Number(year))/100;
+
+					let total = amount + interest1;
+					let emi = total/(year*12);
+					document.getElementById("totalpaid").value = total;
+					document.getElementById("monthlypaid").value = emi;
+					});
+
+					topevent.addEventListener('change', (event) => {
+                    let amount = Number(document.getElementById("amount").value);
+					let interest = Number(document.getElementById("loaninterest").value);
+					let year = Number(document.getElementById("termofpayment").value);
+					let interest1 = (Number(amount)*Number(interest)*Number(year))/100;
+
+					let total = amount + interest1;
+					let emi = total/(year*12);
+					document.getElementById("totalpaid").value = total;
+					document.getElementById("monthlypaid").value = emi;
+					});
 
 
 		</script>

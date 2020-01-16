@@ -15,11 +15,15 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td id=\"transaction_id_$row[$tid]\">$row[$tid]</td>";
-        echo "<td>$row[$fname]</td>";
+        echo "<td id=\"transaction_fname_$row[$fname]\">$row[$fname]</td>";
         echo "<td>$row[$lname]</td>";
         echo "<td>$row[$address]</td>";
-        echo "<td><button type=\"button\"  class=\"button button-primary actionbutton\" onclick=\"deleteData('test')\" 
-                id=\"btnDelete\">Delete</button></td>";
+        echo "<td>
+                <button type=\"button\"  class=\"button button-primary actionbutton\" onclick=\"viewData('view')\" 
+                id=\"btnView\">View</button><button type=\"button\"  class=\"button button-primary actionbutton\" onclick=\"deleteData('delete')\" 
+                id=\"btnDelete\">Delete</button>
+                
+                </td>";
         echo "</tr>";
     }
 

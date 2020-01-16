@@ -67,18 +67,29 @@
 
 	</body>
     <script type="text/javascript">
-            $(document).on("click", "#btnDelete", function(){
-                alert("Oten");
-            });
-        $.ajax({
-            url: "../php/view.php",
-            type: "POST",
-            cache: false,
-            success: function (response) {
-                //alert(response);
-                $("#tablebody").html(response);
-            }
-        });
+            $(document).ready(function(){
+                $.ajax({
+                url: "../php/view.php",
+                type: "POST",
+                cache: false,
+                success: function (response) {
+                    //alert(response);
+                    $("#tablebody").html(response);
+                }
+                });
 
+                    $(document).on("click", "#btnDelete", function(){
+                    var ele = $(this).parent().parent();
+                    alert("woffen!");
+
+            });
+            });
+                    
+
+
+
+            function insertData(key){
+                
+            }
     </script>
 	</html>
