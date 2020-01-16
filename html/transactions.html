@@ -103,14 +103,13 @@
 
 
              function searchData(id){
-                let searchID = $("#inputsearch");
                 alert(id);
                 $.ajax({
                 url: "../php/search.php",
                 type: "POST",
                 data:{
                     key: "search",
-                    id: searchID.val()
+                    id: id
                 },
                 cache: false,
                 success: function (response) {
