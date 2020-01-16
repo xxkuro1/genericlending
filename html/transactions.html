@@ -36,8 +36,8 @@
 		<br>
 		<center>
 			<form >
-                <input class="inputsearch" name="search" type="number"><br>
-                <button class="btnSearch waves-effect waves-light btn" id="btnSearch" style="width:100px;"
+                <input class="inputsearch" name="search" id="inputsearch" type="number"><br>
+                <button class="btnSearch waves-effect waves-light btn" id="btnSearch" onclick="searchData($('#inputsearch').val())" style="width:100px;"
                         type="Submit">Search
                 </button>
 
@@ -102,13 +102,15 @@
 
 
 
-             function SearchData(id){
+             function searchData(id){
+                let searchID = $("#inputsearch");
+                alert(id);
                 $.ajax({
                 url: "../php/search.php",
                 type: "POST",
                 data:{
                     key: "search",
-                    id: id
+                    id: searchID.val()
                 },
                 cache: false,
                 success: function (response) {
