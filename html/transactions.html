@@ -58,9 +58,6 @@
 
                     </table>
 			</div>
-
-
-
 	</body>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -75,6 +72,22 @@
             });
 
         });
+
+
+        function viewData(id, key) {
+            $.ajax({
+                url: "../php/viewdata.php",
+                type: "POST",
+                data: {
+                    key: key,
+                    id: id
+                },
+                cache: false,
+                success: function (response) {
+                    //alert(response);
+                }
+            });
+        }
 
         function deleteData(id) {
             let inputsearch = $("#inputsearch");
@@ -95,6 +108,7 @@
 
         }
 
+        //Data Table alternative (requested by sir tan)
         function filterTable() {
             // ES declarations
             let input, filter, table, tr, td, i, txtval;
@@ -116,30 +130,6 @@
                 }
             }
         }
-
-
-        /*
-                     function searchData(id){
-                        //alert(id);
-                        $.ajax({
-                        url: "../php/search.php",
-                        type: "POST",
-                        data:{
-                            key: "search",
-                            id: id
-                        },
-                        cache: false,
-                        success: function (response) {
-                            alert(response);
-                            //$("#transaction_id_"+id).parent().remove();
-                            $("#tablebody").html(response);
-                        }
-                        });
-
-                    }
-
-
-        * */
 
 
 

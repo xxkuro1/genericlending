@@ -19,7 +19,7 @@ if ($result->num_rows > 0) {
         echo "<td>$row[$lname]</td>";
         echo "<td>$row[$address]</td>";
         echo "<td>
-                <button type=\"button\"  class=\"button button-primary actionbutton\" onclick=\"viewData('view')\" 
+                <button type=\"button\"  class=\"button button-primary actionbutton\" onclick=\"viewData($row[$tid],'view')\" 
                 id=\"btnView\">View</button><button type=\"button\"  class=\"button button-primary actionbutton\" onclick=\"deleteData($row[$tid])\" 
                 id=\"btnDelete\">Delete</button>
                 
