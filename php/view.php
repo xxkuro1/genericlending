@@ -18,7 +18,8 @@ if ($result->num_rows > 0) {
         echo "<td>$row[$fname]</td>";
         echo "<td>$row[$lname]</td>";
         echo "<td>$row[$address]</td>";
-        echo "<td><button type=\"button\"  class=\"button button-primary actiobutton\">View</button><button type=\"button\"  class=\"button button-primary actiobutton\">Delete</button></td>";
+        echo "<td><button type=\"button\"  class=\"button button-primary actionbutton\" onlclick=\"deleteData('test')\" 
+                id=\"btnDelete\">Delete</button></td>";
         echo "</tr>";
     }
 
