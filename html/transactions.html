@@ -67,12 +67,15 @@
 
 	</body>
     <script type="text/javascript">
+            $(document).on("click", "#btnDelete", function(){
+                alert("Oten");
+            });
         $.ajax({
             url: "../php/view.php",
             type: "POST",
             cache: false,
             success: function (response) {
-                alert(response);
+                //alert(response);
                 $("#tablebody").html(response);
             }
         });
