@@ -42,7 +42,7 @@
 					<input type="number" id="amount" class="inputfield u-full-width" value="Amount" >
 
 					<label>Term of Payment (per year) </label>
-					 <select id="termofpayment"  class="payment browser-default inputfield">
+					 <select id="termofpayment" onchange="loanamount(this.value)" class="payment browser-default inputfield" required>
 					    <option value=1>1</option>
 					    <option value=2>2</option>
 					    <option value=3>3</option>
@@ -131,6 +131,24 @@
 					}
 				});
 			}
+
+			 function loanamount()
+                    {
+                    var amount=document.getElementById("amount").value; 
+                    var interest=document.getElementById("loaninterest").value; 
+                    var year=document.getElementById("termofpayment").value; 
+                    
+                    var interest1=(Number(amount)*Number(interest)*Number(year))/100;
+                    var total=Number(amount)+Number(interest1);
+                    
+                    var emi=total/(year*12);
+                    document.getElementById("totalpaid").value=total;
+                    document.getElementById("monthlypaid").value=emi;
+                    
+                    }
+
+
+
 		</script>
 
 
