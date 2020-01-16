@@ -78,18 +78,25 @@
                 }
                 });
 
-                    $(document).on("click", "#btnDelete", function(){
-                    var ele = $(this).parent().parent();
-                    alert("woffen!");
-
-            });
             });
                     
 
 
 
-            function insertData(key){
-                
+            function deleteData(id){
+                $.ajax({
+                url: "../php/delete.php",
+                type: "POST",
+                data:{
+                    key: "delete",
+                    id: id
+                },
+                cache: false,
+                success: function (response) {
+                    alert(response);
+                    $("#transaction_id_"+id).parent().remove();
+                }
+                });
             }
     </script>
 	</html>
