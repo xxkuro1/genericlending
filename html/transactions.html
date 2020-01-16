@@ -36,17 +36,13 @@
 		<br>
 		<center>
 			<form >
-                <input class="inputsearch" name="search" id="inputsearch" type="number"><br>
-                <button class="btnSearch waves-effect waves-light btn" id="btnSearch" onclick="searchData($('#inputsearch').val())" style="width:100px;"
-                        type="Submit">Search
-                </button>
-
+                <input class="inputsearch" id="inputsearch" name="search" onkeyup="filterTable()" type="text"><br>
 			</form>
 		</center>
 	</div>
 
 				<div class="table">
-                    <table width="50%">
+                    <table id="tableID" width="50%">
                         <thead>
                         <tr>
                             <th>Transaction ID</th>
@@ -67,8 +63,8 @@
 
 	</body>
     <script type="text/javascript">
-            $(document).ready(function(){
-                $.ajax({
+        $(document).ready(function () {
+            $.ajax({
                 url: "../php/view.php",
                 type: "POST",
                 cache: false,
@@ -76,49 +72,74 @@
                     //alert(response);
                     $("#tablebody").html(response);
                 }
-                });
-
             });
-                    
 
+        });
 
-
-            function deleteData(id){
-                $.ajax({
+        function deleteData(id) {
+            let inputsearch = $("#inputsearch");
+            inputsearch.val("");
+            $.ajax({
                 url: "../php/delete.php",
                 type: "POST",
-                data:{
+                data: {
                     key: "delete",
                     id: id
                 },
                 cache: false,
                 success: function (response) {
                     alert(response);
-                    $("#transaction_id_"+id).parent().remove();
+                    $("#transaction_id_" + id).parent().remove();
                 }
-                });
+            });
 
-            }
+        }
 
+        function filterTable() {
+            // ES declarations
+            let input, filter, table, tr, td, i, txtval;
+            input = document.getElementById("inputsearch");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("tablebody");
+            tr = table.getElementsByTagName("tr");
 
-
-             function searchData(id){
-                alert(id);
-                $.ajax({
-                url: "../php/search.php",
-                type: "POST",
-                data:{
-                    key: "search",
-                    id: id
-                },
-                cache: false,
-                success: function (response) {
-                    alert(response);
-                    //$("#transaction_id_"+id).parent().remove();
+            //loop through the rows
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtval = td.textContent || td.innerText;
+                    if (txtval.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
                 }
-                });
-
             }
+        }
+
+
+        /*
+                     function searchData(id){
+                        //alert(id);
+                        $.ajax({
+                        url: "../php/search.php",
+                        type: "POST",
+                        data:{
+                            key: "search",
+                            id: id
+                        },
+                        cache: false,
+                        success: function (response) {
+                            alert(response);
+                            //$("#transaction_id_"+id).parent().remove();
+                            $("#tablebody").html(response);
+                        }
+                        });
+
+                    }
+
+
+        * */
 
 
 

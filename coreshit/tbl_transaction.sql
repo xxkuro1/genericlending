@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 15, 2020 at 05:20 PM
+-- Generation Time: Jan 16, 2020 at 11:13 AM
 -- Server version: 5.6.37
 -- PHP Version: 7.1.8
 
@@ -34,8 +34,8 @@ CREATE TABLE IF NOT EXISTS `tbl_transaction` (
   `loaninterest` int(7) NOT NULL,
   `amount` int(7) NOT NULL,
   `top` int(7) NOT NULL,
-  `tp` int(7) NOT NULL,
-  `mp` int(7) NOT NULL,
+  `tp` double(7,3) NOT NULL,
+  `mp` double(7,3) NOT NULL,
   `dd` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
