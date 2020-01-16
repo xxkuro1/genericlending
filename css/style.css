@@ -8,6 +8,17 @@
 		height:1000px;
 		width:1000px;
 		border:2px;
+
+		
+	}
+
+
+	.style{
+
+		font-size:20px;
+		left:30px;
+		font-style:verdana;
+		text-align:center;
 		
 	}
 	
@@ -19,6 +30,27 @@
 		border: none;
 		left: 50%;
 		transform: translateX(-50%) translateY(-70%);
+
+	}
+
+	.text{
+
+		background-color:white;
+		width:900px;
+		height:400px;
+		position:relative;
+		left:260px;
+
+	}
+
+	.image{
+
+		background-color:white;
+		width:1100px;
+		height:300px;
+		position:relative;
+		left:182px;
+		
 
 	}
 
