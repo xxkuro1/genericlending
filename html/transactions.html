@@ -97,6 +97,29 @@
                     $("#transaction_id_"+id).parent().remove();
                 }
                 });
+
             }
+
+
+
+             function SearchData(id){
+                $.ajax({
+                url: "../php/search.php",
+                type: "POST",
+                data:{
+                    key: "search",
+                    id: id
+                },
+                cache: false,
+                success: function (response) {
+                    alert(response);
+                    //$("#transaction_id_"+id).parent().remove();
+                }
+                });
+
+            }
+
+
+
     </script>
 	</html>
