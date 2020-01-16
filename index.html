@@ -54,7 +54,17 @@
             let id = location.hash.slice(1);
             if (pagenames[id] != undefined) {
                 tabname = id;
+                //alert(tabname);
             }
+        }
+        let xx = document.getElementById("header-iframe");
+        let yy = document.getElementById("header-container");
+        if(tabname != "home"){
+                xx.style.display = "none";
+                yy.style.display = "none";
+        }else{
+                xx.style.display = "block";
+                yy.style.display = "block";
         }
         var iframe = document.getElementById("content-iframe");
         iframe.contentWindow.location.replace(pagenames[tabname]);
