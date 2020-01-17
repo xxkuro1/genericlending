@@ -34,6 +34,30 @@
 
 	}
 
+	.headernew{
+
+		width:3000px;
+		height:400px;
+		background-color:#4298f5;
+		position: relative;
+		left:-200px;
+		top:-20px;
+		z-index:4; 
+
+	}
+
+	.footer{
+
+		width:100%;
+		height:150px;
+		background-color:#4298f5;
+		position: relative;
+		left:-5px;
+		top:-20px;
+		z-index:4; 
+
+	}
+
 	.text{
 
 		background-color:white;
@@ -118,20 +142,17 @@
 		top:30px;
 		
 		
-		
-		
-		
 	}
 
 	.links {
 		
-		background-color:#152357;
-		width:180px;
+		background-color:white;
+		width:0px;
 		height:100%;
 		position:fixed;
-		z-index:4;
-		top:0px;
-		left:0px;
+		z-index:1;
+		top:-100px;
+		left:40px;
 							
 							
 	}
@@ -140,11 +161,13 @@
 		height: 100%;
 		padding: 2px;
 		overflow-x: hidden; //horizontal
+		
 	}
 	#content-iframe {
 		width: 100%;
 		height: 1000px;
 		overflow-x: hidden; //horizontal
+		border:none;
 	}
 
 	.buttonlink {
@@ -191,18 +214,6 @@
 	}
 	
 	
-	.footer {
-		
-		
-		
-		position:absolute;
-		top:1100px;
-		width:910px;
-		text-align: center;
-		background-color:red;
-		height:100px;
-		
-	}
 	
 	
 	.search{
