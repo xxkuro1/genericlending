@@ -16,6 +16,7 @@
 
 	.style{
 
+
 		font-size:20px;
 		left:30px;
 		text-align:center;
@@ -41,6 +42,35 @@
 		position: relative;
 		left:-200px;
 		top:-20px;
+		z-index:4; 
+
+	}
+
+	.headerloan{
+
+		width:3000px;
+		height:210px;
+		background-color:#4298f5;
+		position: relative;
+		left:-200px;
+		top:-100px;
+		z-index:4; 
+
+	}
+	.thcolor{
+
+	background-color:#4298f5; 
+	color:white;
+	
+	}
+	.headerhistory{
+
+		width:3000px;
+		height:210px;
+		background-color:#4298f5;
+		position: relative;
+		left:-200px;
+		top:-200px;
 		z-index:4; 
 
 	}
