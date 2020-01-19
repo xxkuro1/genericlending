@@ -19,7 +19,7 @@ if (isset($_POST['key'])) {
 	tbl_transaction 
 	JOIN tbl_history ON tbl_transaction.tid = tbl_history.tid 
     WHERE 
-	tbl_history.tid = '$tid' ORDER BY tbl_history.currentbalance ASC";
+	tbl_history.tid = '$tid' ORDER BY tbl_history.penalty DESC";
 
     if ($_POST['key'] == 'view') {
         $sql = $conn->query($statement);

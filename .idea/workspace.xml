@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98d78b53-a528-4a16-8053-a0c0318fd0cb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/html/addloan.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/addloan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/transactions.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/transactions.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/addloan.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/addloan.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/edit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/initialize.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/initialize.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/delete.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/php/viewdata.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/viewdata.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -80,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/php/viewdata.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="21" column="68" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
+            <state relative-caret-position="323">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
             </state>
           </provider>
         </entry>
@@ -94,6 +89,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
               <caret line="24" column="72" selection-start-line="24" selection-start-column="72" selection-end-line="24" selection-end-column="72" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/php/delete.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -165,6 +169,7 @@
         <option value="$PROJECT_DIR$/html/transactions.html" />
         <option value="$PROJECT_DIR$/php/edit.php" />
         <option value="$PROJECT_DIR$/php/viewdata.php" />
+        <option value="$PROJECT_DIR$/php/delete.php" />
       </list>
     </option>
   </component>
@@ -260,7 +265,7 @@
       <workItem from="1579416700673" duration="5819000" />
       <workItem from="1579427853646" duration="5065000" />
       <workItem from="1579435761885" duration="237000" />
-      <workItem from="1579436461695" duration="11699000" />
+      <workItem from="1579436461695" duration="12057000" />
     </task>
     <task id="LOCAL-00001" summary="improved front end (a bit)">
       <created>1579103318065</created>
@@ -294,7 +299,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66066000" />
+    <option name="totallyTimeSpent" value="66424000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1374" y="-8" width="1382" height="784" extended-state="6" />
@@ -441,13 +446,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/delete.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/php/view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -455,31 +453,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/addloan.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="72" selection-start-line="24" selection-start-column="72" selection-end-line="24" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/addloan.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="144" column="45" lean-forward="true" selection-start-line="144" selection-start-column="45" selection-end-line="144" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/html/transactions.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="240" column="30" selection-start-line="240" selection-start-column="20" selection-end-line="240" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/edit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="28" column="101" selection-start-line="28" selection-start-column="101" selection-end-line="28" selection-end-column="101" />
         </state>
       </provider>
     </entry>
@@ -492,8 +469,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/php/viewdata.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="21" column="68" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
+        <state relative-caret-position="323">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="28" column="101" selection-start-line="28" selection-start-column="101" selection-end-line="28" selection-end-column="101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/addloan.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="144" column="45" lean-forward="true" selection-start-line="144" selection-start-column="45" selection-end-line="144" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/addloan.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="72" selection-start-line="24" selection-start-column="72" selection-end-line="24" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/delete.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
         </state>
       </provider>
     </entry>
