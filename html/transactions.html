@@ -90,6 +90,9 @@
 								<label>Monthly Pay(With Interest)</label>
 								<input class="inputfield" id="monthlypaid" readonly type="number">
 								<br><br>
+								<label>Current Balance</label>
+								<input class="inputfield" id="currentbalance" readonly type="number">
+								<br><br>
 								<label>Due Date</label>
 								<input class="inputfield" id="duedate" readonly type="date"><br><br>
 								<input class="modal-trigger button button-primary btnAdd" data-target="modal1" id="btnEdit" onclick="editData($('#tid').val())" type="button"  value="Add Transactions">
@@ -119,7 +122,8 @@
 			</div>
 	</body>
     <script type="text/javascript">
-		let globalDue;
+		let globaleDue;
+
         $(document).ready(function () {
             $.ajax({
                 url: "../php/view.php",
@@ -143,12 +147,14 @@
 			let penaltydate = new Date(oldate);
 			let penaltylabel = document.getElementById("penaltydate");
 			let penaltybox = document.getElementById("penalty");
-
-			penaltybox.value = Number((penaltydate.getTime() - today.getTime())/31536000000).toFixed(0);
+			let duepayment =  Math.abs(Number((penaltydate.getTime() - today.getTime())/31536000000).toFixed(0));
+			penaltybox.value =	duepayment;
 
 			penaltylabel.innerHTML = (penaltydate.getMonth()+1)+"-"+penaltydate.getDate()+"-"+penaltydate.getFullYear() +" and "+ date;
 
-			//alert(date);
+
+
+			return duepayment;
 		}
 
 
@@ -165,7 +171,11 @@
                 },
                 cache: false,
                 success: function (response) {
-                	getcurrentDate(response.dd);
+                	globaleDue = getcurrentDate(response.dd);
+					let penalty = (response.amount * response.loaninterest * response.top * globaleDue) / 100;
+					let penaltypay = Number(Number(penalty) + Number(response.amount));
+					let penaltymonth = Number(Number(penaltypay) / (Number(response.top)*12));
+                	alert(globaleDue);
 					if(type == "view"){
 						$("#tid").val(response.tid);
 						$("#fname").val(response.fname);
@@ -173,9 +183,12 @@
 						$("#address").val(response.address);
 						$("#currentamount").val(response.amount);
 						$("#termofpayment").val(response.top);
-						$("#totalpaid").val(response.tp);
-						$("#monthlypaid").val(response.mp);
+						$("#loaninterest").val(response.loaninterest);
+						$("#totalpaid").val(penaltypay);
+						$("#monthlypaid").val(penaltymonth);
 						$("#duedate").val(response.dd);
+						//placeholder for now
+						$("#currentbalance").val(response.tp);
 
 					}
 
@@ -253,7 +266,7 @@
 			let amount = Number(document.getElementById("currentamount").value);
 			let interest = Number(document.getElementById("loaninterest").value);
 			let year = Number(document.getElementById("termofpayment").value);
-			let interest1 = (Number(amount)*Number(interest)*Number(year))/100;
+			let interest1 = (Number(amount)*Number(interest)*Number(year)*globaleDue)/100;
 
 			let total = amount + interest1;
 			let emi = total/(year*12);
@@ -265,7 +278,7 @@
 			let amount = Number(document.getElementById("currentamount").value);
 			let interest = Number(document.getElementById("loaninterest").value);
 			let year = Number(document.getElementById("termofpayment").value);
-			let interest1 = (Number(amount)*Number(interest)*Number(year))/100;
+			let interest1 = (Number(amount)*Number(interest)*Number(year)*Number(globaleDue))/100;
 
 			let total = amount + interest1;
 			let emi = total/(year*12);
