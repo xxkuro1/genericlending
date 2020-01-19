@@ -12,7 +12,7 @@ $key = $_POST['key'];
 
 if (isset($_POST['key'])) {
     $conn = new mysqli($db_host, $db_username, $db_password, $db_name);
-    $statement = "SELECT * FROM tbl_transaction WHERE tid='$tid'";
+    $statement = "SELECT * FROM tbl_history,tbl_transaction WHERE tbl_history.tid='$tid'";
 
     if ($_POST['key'] == 'view') {
         $sql = $conn->query($statement);
@@ -29,6 +29,8 @@ if (isset($_POST['key'])) {
             'tp' => $data['tp'],
             'mp' => $data['mp'],
             'dd' => $data['dd'],
+            'currentamount' => $data['currentamount'],
+            'currentbalance' => $data['currentbalance'],
         );
 
         exit(json_encode($jsonArray));

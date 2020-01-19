@@ -90,6 +90,9 @@
 								<label>Monthly Pay(With Interest)</label>
 								<input class="inputfield" id="monthlypaid" readonly type="number">
 								<br><br>
+								<label>Penalty</label>
+								<input class="inputfield" id="penaltypay" readonly type="number">
+								<br><br>
 								<label>Current Balance</label>
 								<input class="inputfield" id="currentbalance" readonly type="number">
 								<br><br>
@@ -136,12 +139,11 @@
             });
 			$(document).ready(function(){
 				$('.modal').modal();
-				//getcurrentDate();
-				//getpenaltyfee();
+				alert("Date is "+getCurrentDate());
 			});
         });
 
-		function getcurrentDate(oldate){
+		function getPenalty(oldate){
 			let today = new Date();
 			let date = (today.getMonth()+1)+"-"+today.getDate()+"-"+today.getFullYear();
 			let penaltydate = new Date(oldate);
@@ -158,9 +160,16 @@
 		}
 
 
+		function getCurrentDate(){
+			let today = new Date();
+			//let date = (today.getMonth()+1)+"-"+today.getDate()+"-"+today.getFullYear();
+			let date = today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate();
+
+			return date;
+		}
+
 
         function viewData(id, type) {
-			getcurrentDate();
             $.ajax({
                 url: "../php/viewdata.php",
                 method: "POST",
@@ -171,7 +180,7 @@
                 },
                 cache: false,
                 success: function (response) {
-                	globaleDue = getcurrentDate(response.dd);
+                	globaleDue = getPenalty(response.dd);
 					let penalty = (response.amount * response.loaninterest * response.top * globaleDue) / 100;
 					let penaltypay = Number(Number(penalty) + Number(response.amount));
 					let penaltymonth = Number(Number(penaltypay) / (Number(response.top)*12));
@@ -188,7 +197,8 @@
 						$("#monthlypaid").val(penaltymonth);
 						$("#duedate").val(response.dd);
 						//placeholder for now
-						$("#currentbalance").val(response.tp);
+						$("#currentbalance").val(response.currentbalance);
+						$("#penaltypay").val(response.penalty);
 
 					}
 
@@ -197,14 +207,36 @@
         }
 		function editData(id){
 			//alert("EDIT row "+id);
-
+			let tid = $("#tid");
+			let fname = $("#fname");
+			let lname = $("#lname");
+			let address = $("#address");
+			let loaninterest = $("#loaninterest");
+			let amount = $("#currentamount");
+			let termofpayment = $("#termofpayment");
+			let totalpaid = $("#totalpaid");
+			let monthlypaid = $("#monthlypaid");
+			let duedate = $("#duedate");
+			let penaltypay = $("#penaltypay");
+			let paymentdate = getCurrentDate();
 			$.ajax({
 				url: "../php/edit.php",
 				method: "POST",
 				dataType: "text",
 				data:{
 					key: "edit",
-					id: id
+					id: id,
+					fname: fname.val(),
+					lname: lname.val(),
+					address: address.val(),
+					loaninterest: loaninterest.val(),
+					amount: amount.val(),
+					termofpayment: termofpayment.val(),
+					totalpaid: totalpaid.val(),
+					monthlypaid: monthlypaid.val(),
+					duedate: duedate.val(),
+					penaltypay: penaltypay.val(),
+					paymentdate: paymentdate
 				},
 				cache: false,
 				success:function (response) {
@@ -271,6 +303,7 @@
 			let total = amount + interest1;
 			let emi = total/(year*12);
 			document.getElementById("totalpaid").value = total;
+			document.getElementById("penaltypay").value = interest1;
 			document.getElementById("monthlypaid").value = emi;
 		});
 

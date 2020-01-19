@@ -9,6 +9,10 @@ $termofpayment = $_POST['termofpayment'];
 $totalpaid = $_POST['totalpaid'];
 $monthlypaid = $_POST['monthlypaid'];
 $duedate = $_POST['duedate'];
+
+
+
+
 $conn = new mysqli($db_host,$db_username,$db_password,$db_name);
 
 if(isset($_POST['key'])){
@@ -25,6 +29,7 @@ if(isset($_POST['key'])){
         }
 
     }
+
 
 }
 
