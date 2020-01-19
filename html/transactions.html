@@ -113,7 +113,7 @@
 
                     <table id="tableID" width="50%">
                         
-                        <tr  class="thcolor">
+                        <tr  id="tableRow" class="thcolor">
                             <th>Transaction ID</th>
                             <th>FirstName</th>
                             <th>LastName</th>
@@ -143,7 +143,7 @@
             });
 			$(document).ready(function(){
 				$('.modal').modal();
-				alert("Date is "+getCurrentDate());
+				//alert("Date is "+getCurrentDate());
 			});
         });
 
@@ -188,7 +188,7 @@
 					let penalty = (response.amount * response.loaninterest * response.top * globaleDue) / 100;
 					let penaltypay = Number(Number(penalty) + Number(response.amount));
 					let penaltymonth = Number(Number(penaltypay) / (Number(response.top)*12));
-                	alert(globaleDue);
+                	//alert(globaleDue);
 					if(type == "view"){
 						$("#tid").val(response.tid);
 						$("#fname").val(response.fname);
@@ -203,7 +203,6 @@
 						//placeholder for now
 						$("#currentbalance").val(response.currentbalance);
 						$("#penaltypay").val(response.penalty);
-
 					}
 
                 }

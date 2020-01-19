@@ -12,7 +12,14 @@ $key = $_POST['key'];
 
 if (isset($_POST['key'])) {
     $conn = new mysqli($db_host, $db_username, $db_password, $db_name);
-    $statement = "SELECT * FROM tbl_history,tbl_transaction WHERE tbl_history.tid='$tid' ORDER BY tbl_history.hid DESC";
+
+    $statement = "SELECT 
+	* 
+    FROM 
+	tbl_transaction 
+	JOIN tbl_history ON tbl_transaction.tid = tbl_history.tid 
+    WHERE 
+	tbl_history.tid = '$tid' ORDER BY tbl_history.currentbalance ASC";
 
     if ($_POST['key'] == 'view') {
         $sql = $conn->query($statement);
@@ -35,6 +42,19 @@ if (isset($_POST['key'])) {
         );
 
         exit(json_encode($jsonArray));
+    }
+
+
+    if($_POST['key'] == "getrows"){
+        $statement = "SELECT * FROM tbl_transaction";
+        $result = $conn->query($statement);
+
+        if ($result->num_rows > 0) {
+            echo $result->num_rows;
+
+        } else {
+            echo "0";
+        }
     }
 
 }

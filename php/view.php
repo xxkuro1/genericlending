@@ -12,6 +12,7 @@ $statement = "SELECT * FROM tbl_transaction";
 $result = $conn->query($statement);
 
 if ($result->num_rows > 0) {
+
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td id=\"transaction_id_$row[$tid]\">$row[$tid]</td>";

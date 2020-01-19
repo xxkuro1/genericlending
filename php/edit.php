@@ -27,11 +27,9 @@ if(isset($key)){
         echo $key." at row ". $id. "<br>";
 
         $statement = "UPDATE tbl_transaction SET tp='$totalpaid', mp='$monthlypaid' WHERE tid='$id'";
-
         $statement2 = "INSERT INTO tbl_history(currentamount,currentbalance,penalty,dop,tid) VALUES ('$amount','$totalpaid','$penalty','$dop','$id')";
-        if($conn->query($statement) === TRUE && $conn->query($statement2) === TRUE){
+        if($conn->query($statement) === TRUE && $conn->query($statement2)){
             echo "Entry Updated <br>";
-
         }else{
             echo "Something went wrong ".$conn->error;
         }

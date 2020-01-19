@@ -39,7 +39,7 @@
 
 					<div class="six columns">
 					<label>Transaction ID </label>
-					<input type="number" id="tid" class="inputfield u-full-width" value="Amount" ><br>
+					<input type="number" id="tid" class="inputfield u-full-width" ><br>
 					<label>First Name: </label>
 					<input type="text" id="fname" class="inputfield u-full-width" placeholder="First Name"><br>
 					<label>Last Name: </label>
@@ -103,10 +103,22 @@
                     monthlypaid.val("");
                     duedate.val("");
                 });
-
+				fetch_data();
             });
 
-
+			function fetch_data(){
+				$.ajax({
+					url: "../php/viewdata.php",
+					method: "POST",
+					dataType: "text",
+					data:{
+						key:"getrows"
+					},
+					success: function(response) {
+						document.getElementById("tid").value = Number(Number(response) + 1);
+					}
+				});
+			}
 			function insertData(key){
 				let tid = $("#tid");
 				let fname = $("#fname");
@@ -125,6 +137,7 @@
 					dataType: 'text',
 					data: {
 						key: key,
+						tid: tid.val(),
 						fname: fname.val(),
 						lname: lname.val(),
 						address: address.val(),

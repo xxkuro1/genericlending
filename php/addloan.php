@@ -1,5 +1,6 @@
 <?php
 include "initialize.php";
+$tid = $_POST['tid'];
 $firstname = $_POST['fname'];
 $lastname = $_POST['lname'];
 $address = $_POST['address'];
@@ -20,16 +21,13 @@ if(isset($_POST['key'])){
     if($_POST['key'] == 'insert'){
         $statement = "INSERT INTO tbl_transaction(fname,lname,address,loaninterest,amount,top,tp,mp,dd) 
         VALUES ('$firstname','$lastname','$address','$loaninterest','$amount','$termofpayment','$totalpaid','$monthlypaid','$duedate')";
-
-        if($conn->query($statement) === TRUE){
+        $statement2 = "INSERT INTO tbl_history(currentamount,currentbalance,penalty,dop,tid) VALUES ('$amount','$totalpaid','','','$tid')";
+        if($conn->query($statement) === TRUE && $conn->query($statement2) === TRUE ){
             echo "Insert Successful";
         }else{
             echo $conn->error;
-
         }
-
     }
-
 
 }
 
