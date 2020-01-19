@@ -37,23 +37,23 @@
 	.headernew{
 
 		width:3000px;
-		height:400px;
+		height:350px;
 		background-color:#4298f5;
 		position: relative;
 		left:-200px;
-		top:-20px;
+		top:-265px;
 		z-index:4; 
 
 	}
 
 	.headerloan{
 
-		width:3000px;
+		width:5000px;
 		height:210px;
 		background-color:#4298f5;
-		position: relative;
-		left:-200px;
-		top:-100px;
+		position: fixed;
+		right:-300px;
+		top:-115px;
 		z-index:4; 
 
 	}
@@ -61,7 +61,15 @@
 
 	background-color:#4298f5; 
 	color:white;
-	
+
+
+
+	}
+
+	.roundedcorners{
+
+
+		 border-radius: 13px; 
 	}
 	.headerhistory{
 
@@ -152,6 +160,7 @@
 		border-radius: 12px;
 		font-size: 13px;
 		height: 50px !important;
+		
 
 		font-weight: bold;
 		
@@ -188,7 +197,7 @@
 	#content-container {
 		width: 100%;
 		height: 1000px;
-		padding: 2px;
+		padding: px;
 		overflow-x: hidden;
 		border: none;
 	}
@@ -294,7 +303,7 @@
 		position:relative;
 		z-index:0;
 		left: 250px;
-        top: -45px;
+        top: -65px;
 		padding-right: 30px;
 		padding-bottom: 50px;
 		padding-left: 80px;
