@@ -1,6 +1,6 @@
 <?php
 $db_username = "root";
-$db_password = "";
+$db_password = "mysql";
 $db_host = "localhost";
 $db_name = "db_lending";
 

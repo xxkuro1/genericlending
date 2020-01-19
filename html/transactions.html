@@ -5,10 +5,10 @@
 
 
 	<head>
-	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link href="../css/style.css" rel="stylesheet" type="text/css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
 	<!-- Compiled and minified CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
 	<!-- Compiled and minified JavaScript -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <link href="../css/skeleton.css" rel="stylesheet" type="text/css">
@@ -33,8 +33,8 @@
 
 	<body>
 
-		 <iframe id="header-iframe" src="headerloan.html" scrolling="no"></iframe>
-	<div class="search" align="center">
+		 <iframe id="header-iframe" scrolling="no" src="headerloan.html"></iframe>
+	<div align="center" class="search">
 
     	
 
@@ -49,27 +49,26 @@
 
 				<div class="table">
 
-					<div class="somemodal" align="center">
+					<div align="center" class="somemodal">
 						<!--- MODAL BODY -->
-						<div id="modal1" class="modal">
+						<div class="modal" id="modal1">
 							<div class="modal-content">
 
 									<label>Transaction ID </label>
-									<input type="number" id="tid" class="inputfield u-full-width" placeholder="Transaction ID" readonly><br>
+									<input class="inputfield u-full-width" id="tid" placeholder="Transaction ID" readonly type="number">
+									<label>Current Day + Penalty </label>
+									<label id="penaltydate">Date goes here</label>
+									<input class="inputfield u-full-width" id="penalty" placeholder="Date and Penalty" readonly type="number">
 									<label>First Name: </label>
-									<input type="text" id="fname" class="inputfield u-full-width" placeholder="First Name"><br>
+									<input class="inputfield u-full-width" id="fname" placeholder="First Name" type="text"><br>
 									<label>Last Name: </label>
-									<input type="text" id="lname"  class="inputfield u-full-width" placeholder="Last Name">
+									<input class="inputfield u-full-width" id="lname"  placeholder="Last Name" type="text">
 									<label>Address: </label>
 									<textarea class="inputfield u-full-width" id="address" placeholder="Address"
 											  type="text"></textarea><br><br>
-								<label>Loan Interest (percent) </label>
-								<input class="inputfield u-full-width" id="loaninterest" placeholder="10" readonly type="number" value="10">
-								<label>Amount</label>
-								<input type="number" id="amount" class="inputfield u-full-width" placeholder="Amount" >
 
 								<label>Term of Payment (per year) </label>
-								<select id="termofpayment" class="payment browser-default inputfield" required>
+								<select id="termofpayment" class="payment browser-default inputfield" disabled>
 									<option value=1>1</option>
 									<option value=2>2</option>
 									<option value=3>3</option>
@@ -81,7 +80,10 @@
 									<option value=9>9</option>
 									<option value=10>10</option>
 								</select><br>
-
+								<label>Loan Interest (percent) </label>
+								<input class="inputfield u-full-width" id="loaninterest" placeholder="10" readonly type="number" value="10">
+								<label>Current Amount</label>
+								<input class="inputfield u-full-width" id="currentamount" placeholder="Amount" type="number" >
 								<label>Total paid with Interest (with Interest)</label>
 								<input class="inputfield" id="totalpaid" readonly type="number">
 
@@ -89,12 +91,12 @@
 								<input class="inputfield" id="monthlypaid" readonly type="number">
 								<br><br>
 								<label>Due Date</label>
-								<input type="date" id="duedate" class="inputfield"><br><br>
-								<input type="button"  class="button button-primary btnAdd" onclick="insertData('insert')" id="btnAdd"  value="Add Transactions">
+								<input class="inputfield" id="duedate" readonly type="date"><br><br>
+								<input class="modal-trigger button button-primary btnAdd" data-target="modal1" id="btnEdit" onclick="editData($('#tid').val())" type="button"  value="Add Transactions">
 							</div>
 							<div class="modal-footer">
-								<a href="#!" class="modal-close waves-effect waves-green btn-flat">Save</a>
-								<a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
+								<a class="modal-close waves-effect waves-green btn-flat" href="#!">Save</a>
+								<a class="modal-close waves-effect waves-red btn-flat" href="#!">Cancel</a>
 							</div>
 						</div>
 					</div>
@@ -117,6 +119,7 @@
 			</div>
 	</body>
     <script type="text/javascript">
+		let globalDue;
         $(document).ready(function () {
             $.ajax({
                 url: "../php/view.php",
@@ -129,12 +132,29 @@
             });
 			$(document).ready(function(){
 				$('.modal').modal();
+				//getcurrentDate();
+				//getpenaltyfee();
 			});
         });
+
+		function getcurrentDate(oldate){
+			let today = new Date();
+			let date = (today.getMonth()+1)+"-"+today.getDate()+"-"+today.getFullYear();
+			let penaltydate = new Date(oldate);
+			let penaltylabel = document.getElementById("penaltydate");
+			let penaltybox = document.getElementById("penalty");
+
+			penaltybox.value = Number((penaltydate.getTime() - today.getTime())/31536000000).toFixed(0);
+
+			penaltylabel.innerHTML = (penaltydate.getMonth()+1)+"-"+penaltydate.getDate()+"-"+penaltydate.getFullYear() +" and "+ date;
+
+			//alert(date);
+		}
 
 
 
         function viewData(id, type) {
+			getcurrentDate();
             $.ajax({
                 url: "../php/viewdata.php",
                 method: "POST",
@@ -145,22 +165,41 @@
                 },
                 cache: false,
                 success: function (response) {
-                	alert(type)
+                	getcurrentDate(response.dd);
 					if(type == "view"){
 						$("#tid").val(response.tid);
 						$("#fname").val(response.fname);
 						$("#lname").val(response.lname);
 						$("#address").val(response.address);
-						$("#amount").val(response.amount);
+						$("#currentamount").val(response.amount);
 						$("#termofpayment").val(response.top);
 						$("#totalpaid").val(response.tp);
 						$("#monthlypaid").val(response.mp);
 						$("#duedate").val(response.dd);
 
 					}
+
                 }
             });
         }
+		function editData(id){
+			//alert("EDIT row "+id);
+
+			$.ajax({
+				url: "../php/edit.php",
+				method: "POST",
+				dataType: "text",
+				data:{
+					key: "edit",
+					id: id
+				},
+				cache: false,
+				success:function (response) {
+					alert(response);
+				}
+
+			});
+		}
 
         function deleteData(id) {
             let inputsearch = $("#inputsearch");
@@ -207,11 +246,11 @@
 
 
 
-		let amountevent = document.getElementById('amount');
+		let amountevent = document.getElementById('currentamount');
 		let topevent = document.getElementById("termofpayment");
 
 		amountevent.addEventListener('input', (event) => {
-			let amount = Number(document.getElementById("amount").value);
+			let amount = Number(document.getElementById("currentamount").value);
 			let interest = Number(document.getElementById("loaninterest").value);
 			let year = Number(document.getElementById("termofpayment").value);
 			let interest1 = (Number(amount)*Number(interest)*Number(year))/100;
@@ -223,7 +262,7 @@
 		});
 
 		topevent.addEventListener('change', (event) => {
-			let amount = Number(document.getElementById("amount").value);
+			let amount = Number(document.getElementById("currentamount").value);
 			let interest = Number(document.getElementById("loaninterest").value);
 			let year = Number(document.getElementById("termofpayment").value);
 			let interest1 = (Number(amount)*Number(interest)*Number(year))/100;
@@ -233,5 +272,9 @@
 			document.getElementById("totalpaid").value = total;
 			document.getElementById("monthlypaid").value = emi;
 		});
+
+
+
+
     </script>
 	</html>
