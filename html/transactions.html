@@ -101,6 +101,9 @@
 								<label>Current Balance</label>
 								<input class="inputfield" id="currentbalance" readonly type="number">
 								<br><br>
+								<label>Current Balance with Penalty</label>
+								<input class="inputfield" id="currentpenalty" readonly type="number">
+								<br><br>
 								<label>Due Date</label>
 								<input class="inputfield" id="duedate" readonly type="date"><br><br>
 								<input class="modal-trigger button button-primary btnAdd" data-target="modal1" id="btnEdit" onclick="editData($('#tid').val())" type="button"  value="Add Transactions">
@@ -223,7 +226,7 @@
 						$("#currentbalance").val(response.currentbalance);
 						$("#penaltypay").val(response.penalty);
 						globalRealPenalty = getRealPenalty(response.dd);
-						
+
 						alert("Global Real penalty >> "+ globalRealPenalty + " "+ globaleDue);
 					}
 					
@@ -336,11 +339,16 @@
 			if(document.getElementById("duedate").value > getCurrentDate()){
 				document.getElementById("penaltypay").value = Number(0);
 			}else{
-				document.getElementById("penaltypay").value = globaleDue * total;	
+				document.getElementById("penaltypay").value = globaleDue * total;
+
 
 			}
-			document.getElementById("currentbalance").value = globalBalance - amount;
-			//document.getElementById("penaltypay").value = globaleDue;
+			document.getElementById("currentbalance").value = globalBalance - amount  ;
+
+			document
+			
+			document.getElementById("currentpenalty").value = 
+			Number(document.getElementById("currentbalance").value) + Number(document.getElementById("penaltypay").value);
 			document.getElementById("monthlypaid").value = Math.abs(emi);
 		});
 
