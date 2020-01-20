@@ -204,13 +204,7 @@
                 cache: false,
                 success: function (response) {
                 	globalBalance = response.currentbalance;
-                	//alert(globalBalance);
-                	
                 	globaleDue = getPenalty(response.dd);
-					//let penalty = (response.amount * response.loaninterest * response.top * globaleDue) / 100;
-					//let penaltypay = Number(Number(penalty) + Number(response.amount));
-					//let penaltymonth = Number(Number(penaltypay) / (Number(response.top)*12));
-                	//alert(globaleDue);
 					if(type == "view"){
 						$("#tid").val(response.tid);
 						$("#fname").val(response.fname);
@@ -228,6 +222,7 @@
 						globalRealPenalty = getRealPenalty(response.dd);
 
 						alert("Global Real penalty >> "+ globalRealPenalty + " "+ globaleDue);
+						document.getElementById("penalty").value = Number(Math.abs(document.getElementById("penalty").value));
 					}
 					
                 }
@@ -328,14 +323,18 @@
 			let interest = Number(document.getElementById("loaninterest").value);
 			let year = Number(document.getElementById("termofpayment").value);
 			let interest1 = (Number(amount)*Number(interest)*Number(year)*globaleDue)/100;
-
+			let penalty =document.getElementById("penalty").value;
 			let total = amount + interest1;
 			let emi = total/(year*12);
 
 
 			document.getElementById("totalpaid").value = Math.abs(total - amount);
 			
-			
+			if(document.getElementById("penalty").value < 0){
+				document.getElementById("penalty").value = Math.abs(penalty);
+			}
+
+
 			if(document.getElementById("duedate").value > getCurrentDate()){
 				document.getElementById("penaltypay").value = Number(0);
 			}else{
@@ -348,7 +347,8 @@
 			document
 			
 			document.getElementById("currentpenalty").value = 
-			Number(document.getElementById("currentbalance").value) + Number(document.getElementById("penaltypay").value);
+			Number(document.getElementById("currentbalance").value) + Number(document.getElementById("penaltypay").value) - 
+			Number(document.getElementById("currentamount").value);
 			document.getElementById("monthlypaid").value = Math.abs(emi);
 		});
 
