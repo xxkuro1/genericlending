@@ -8,6 +8,7 @@ $loaninterest = $_POST['loaninterest'];
 $amount = $_POST['amount'];
 $termofpayment = $_POST['termofpayment'];
 $totalpaid = $_POST['totalpaid'];
+$currentbalance = $_POST['currentbalance'];
 $monthlypaid = $_POST['monthlypaid'];
 $duedate = $_POST['duedate'];
 $dop = $_POST['paymentdate'];
@@ -21,13 +22,14 @@ $penalty = $_POST['penaltypay'];
 
 
 
+
 if(isset($key)){
     $conn = new mysqli($db_host,$db_username,$db_password,$db_name);
     if($_POST['key'] == "edit"){
         echo $key." at row ". $id. "<br>";
 
         $statement = "UPDATE tbl_transaction SET tp='$totalpaid', mp='$monthlypaid' WHERE tid='$id'";
-        $statement2 = "INSERT INTO tbl_history(currentamount,currentbalance,penalty,dop,tid) VALUES ('$amount','$totalpaid','$penalty','$dop','$id')";
+        $statement2 = "INSERT INTO tbl_history(currentamount,currentbalance,penalty,dop,tid) VALUES ('$amount','$currentbalance','$penalty','$dop','$id')";
         if($conn->query($statement) === TRUE && $conn->query($statement2)){
             echo "Entry Updated <br>";
         }else{

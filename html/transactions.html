@@ -15,6 +15,7 @@
         <link href="../css/normalize.css" rel="stylesheet" type="text/css">
 	</head>
 	<style>
+
         td, th {
             border: 1px solid #dddddd;
             text-align: center;
@@ -88,11 +89,11 @@
 								<input class="inputfield u-full-width" id="loaninterest" placeholder="10" readonly type="number" value="10">
 								<label>Current Amount</label>
 								<input class="inputfield u-full-width" id="currentamount" placeholder="Amount" type="number" >
-								<label>Total paid with Interest (with Interest)</label>
-								<input class="inputfield" id="totalpaid" readonly type="number">
+								<label hidden>Total paid with Interest (with Interest)</label>
+								<input class="inputfield" id="totalpaid" hidden type="number">
 
-								<label>Monthly Pay(With Interest)</label>
-								<input class="inputfield" id="monthlypaid" readonly type="number">
+								<label hidden>Monthly Pay(With Interest)</label>
+								<input class="inputfield" id="monthlypaid" hidden type="number">
 								<br><br>
 								<label>Penalty</label>
 								<input class="inputfield" id="penaltypay" readonly type="number">
@@ -130,7 +131,8 @@
 	</body>
     <script type="text/javascript">
 		let globaleDue;
-
+		let globalBalance;
+		let globalRealPenalty;
         $(document).ready(function () {
             $.ajax({
                 url: "../php/view.php",
@@ -144,8 +146,22 @@
 			$(document).ready(function(){
 				$('.modal').modal();
 				//alert("Date is "+getCurrentDate());
+				
 			});
         });
+
+        function getRealPenalty(oldate){
+        	let penaltydate = new Date(oldate);
+        	let today = getCurrentDate();
+        	let duepenalty = getPenalty(penaltydate);
+        	
+        	let returnpenalty = (penaltydate.getMonth()+1) +"-"+penaltydate.getDate()+"-"+penaltydate.getFullYear();
+        	alert(returnpenalty);
+
+        	return returnpenalty;
+
+        }
+
 
 		function getPenalty(oldate){
 			let today = new Date();
@@ -153,7 +169,7 @@
 			let penaltydate = new Date(oldate);
 			let penaltylabel = document.getElementById("penaltydate");
 			let penaltybox = document.getElementById("penalty");
-			let duepayment =  Math.abs(Number((penaltydate.getTime() - today.getTime())/31536000000).toFixed(0));
+			let duepayment =  Number((penaltydate.getTime() - today.getTime())/31536000000).toFixed(0);
 			penaltybox.value =	duepayment;
 
 			penaltylabel.innerHTML = (penaltydate.getMonth()+1)+"-"+penaltydate.getDate()+"-"+penaltydate.getFullYear() +" and "+ date;
@@ -184,10 +200,13 @@
                 },
                 cache: false,
                 success: function (response) {
+                	globalBalance = response.currentbalance;
+                	//alert(globalBalance);
+                	
                 	globaleDue = getPenalty(response.dd);
-					let penalty = (response.amount * response.loaninterest * response.top * globaleDue) / 100;
-					let penaltypay = Number(Number(penalty) + Number(response.amount));
-					let penaltymonth = Number(Number(penaltypay) / (Number(response.top)*12));
+					//let penalty = (response.amount * response.loaninterest * response.top * globaleDue) / 100;
+					//let penaltypay = Number(Number(penalty) + Number(response.amount));
+					//let penaltymonth = Number(Number(penaltypay) / (Number(response.top)*12));
                 	//alert(globaleDue);
 					if(type == "view"){
 						$("#tid").val(response.tid);
@@ -197,14 +216,16 @@
 						$("#currentamount").val(response.amount);
 						$("#termofpayment").val(response.top);
 						$("#loaninterest").val(response.loaninterest);
-						$("#totalpaid").val(penaltypay);
-						$("#monthlypaid").val(penaltymonth);
+						$("#totalpaid").val(response.tp);
+						$("#monthlypaid").val(response.mp);
 						$("#duedate").val(response.dd);
 						//placeholder for now
 						$("#currentbalance").val(response.currentbalance);
 						$("#penaltypay").val(response.penalty);
+						globalRealPenalty = getRealPenalty(response.dd);
+						alert("Global Real penalty >> "+ globalRealPenalty + " "+ globaleDue);
 					}
-
+					
                 }
             });
         }
@@ -221,6 +242,7 @@
 			let monthlypaid = $("#monthlypaid");
 			let duedate = $("#duedate");
 			let penaltypay = $("#penaltypay");
+			let currentbalance = $("#currentbalance");
 			let paymentdate = getCurrentDate();
 			$.ajax({
 				url: "../php/edit.php",
@@ -239,6 +261,7 @@
 					monthlypaid: monthlypaid.val(),
 					duedate: duedate.val(),
 					penaltypay: penaltypay.val(),
+					currentbalance: currentbalance.val(),
 					paymentdate: paymentdate
 				},
 				cache: false,
@@ -296,7 +319,6 @@
 
 		let amountevent = document.getElementById('currentamount');
 		let topevent = document.getElementById("termofpayment");
-
 		amountevent.addEventListener('input', (event) => {
 			let amount = Number(document.getElementById("currentamount").value);
 			let interest = Number(document.getElementById("loaninterest").value);
@@ -305,23 +327,21 @@
 
 			let total = amount + interest1;
 			let emi = total/(year*12);
-			document.getElementById("totalpaid").value = total;
-			document.getElementById("penaltypay").value = interest1;
-			document.getElementById("monthlypaid").value = emi;
+
+
+			document.getElementById("totalpaid").value = Math.abs(total - amount);
+			
+			
+			if(document.getElementById("duedate").value > getCurrentDate()){
+				document.getElementById("penaltypay").value = Number(0);
+			}else{
+				document.getElementById("penaltypay").value = globaleDue * total;	
+
+			}
+			document.getElementById("currentbalance").value = globalBalance - amount;
+			//document.getElementById("penaltypay").value = globaleDue;
+			document.getElementById("monthlypaid").value = Math.abs(emi);
 		});
-
-		topevent.addEventListener('change', (event) => {
-			let amount = Number(document.getElementById("currentamount").value);
-			let interest = Number(document.getElementById("loaninterest").value);
-			let year = Number(document.getElementById("termofpayment").value);
-			let interest1 = (Number(amount)*Number(interest)*Number(year)*Number(globaleDue))/100;
-
-			let total = amount + interest1;
-			let emi = total/(year*12);
-			document.getElementById("totalpaid").value = total;
-			document.getElementById("monthlypaid").value = emi;
-		});
-
 
 
 
